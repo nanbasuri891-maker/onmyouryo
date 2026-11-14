@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bi-nō 美脳 — A Mind That Reflects, Not Distorts</title>
+
+<meta name="description" content="美脳とは、世界と言い争うのではなく、そのまま映し出せるほど澄んだ心のこと。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="美脳 Bi-nō">
+<meta property="og:title" content="Bi-nō 美脳 — A Mind That Reflects, Not Distorts">
+<meta property="og:description" content="実際に、そこにあるものを見る。静かに現代化された古い知恵、美脳のご紹介。">
+<meta property="og:url" content="https://nanbasuri891-maker.github.io/bino/binojp/">
+<meta property="og:image" content="https://nanbasuri891-maker.github.io/bino/binojp/images/hero-mirror-room.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Shippori+Mincho+B1:wght@500;600;800&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14161A;
+    --forest:#1E3226;
+    --forest-deep:#152219;
+    --reflect:#3F6B5C;
+    --reflect-dim:#2B4A40;
+    --gold:#C7A467;
+    --gold-dim:#8A7345;
+    --mist:#F2EEE3;
+    --mist-dim:#E7E0CF;
+    --text-dark:#1B1D18;
+    --text-light:#F2EEE3;
+    --line-light:rgba(20,22,20,0.14);
+    --line-dark:rgba(242,238,227,0.16);
+    --font-display:'Cormorant Garamond', serif;
+    --font-jp:'Shippori Mincho B1', serif;
+    --font-body:'Work Sans', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+  }
+  *{margin:0; padding:0; box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font-body);
+    background:var(--mist);
+    color:var(--text-dark);
+    line-height:1.75;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+  a{color:inherit;}
+  img,svg{display:block; max-width:100%; height:auto;}
+  .wrap{max-width:1140px; margin:0 auto; padding:0 32px;}
+  @media (max-width:720px){ .wrap{padding:0 22px;} }
+
+  :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+  .eyebrow{
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.22em;
+    text-transform:uppercase; display:inline-flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:20px; height:1px; background:currentColor; opacity:0.55;}
+  .jp{font-family:var(--font-jp); font-weight:600;}
+
+  h1,h2,h3{font-family:var(--font-display); font-weight:500; letter-spacing:0.01em;}
+
+  section{position:relative;}
+  .pad{padding:120px 0;}
+  @media (max-width:720px){ .pad{padding:74px 0;} }
+  .head{max-width:620px; margin-bottom:56px;}
+  .head h2{font-size:clamp(30px,4vw,46px); line-height:1.28; margin-top:18px;}
+  .head p{margin-top:22px; font-size:16px; opacity:0.78; max-width:56ch;}
+
+  .on-dark{background:var(--forest-deep); color:var(--text-light);}
+  .on-dark .eyebrow{color:var(--gold);}
+  .on-light{background:var(--mist); color:var(--text-dark);}
+  .on-light .eyebrow{color:var(--reflect-dim);}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:26px 32px; mix-blend-mode:difference; color:#fff;
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.16em;
+    pointer-events:none;
+  }
+  .nav span{pointer-events:auto;}
+  @media (max-width:560px){ .nav{padding:20px 22px;} }
+
+  /* ---------- HERO / MIRROR SIGNATURE ---------- */
+  .hero{
+    position:relative; min-height:100vh;
+    background:
+      radial-gradient(ellipse 900px 500px at 20% -10%, rgba(199,164,103,0.14), transparent 60%),
+      linear-gradient(180deg, var(--forest) 0%, var(--forest-deep) 100%);
+    color:var(--text-light);
+    display:flex; flex-direction:column; justify-content:center;
+    overflow:hidden;
+    padding:140px 0 0;
+  }
+  .hero-canopy{
+    position:absolute; inset:0; opacity:0.5; pointer-events:none;
+  }
+  .hero-photo{
+    position:absolute; inset:0; z-index:0;
+  }
+  .hero-photo img{
+    width:100%; height:100%; object-fit:cover; opacity:0.34;
+  }
+  .hero-photo::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(21,34,25,0.55) 0%, var(--forest-deep) 92%);
+  }
+  .hero-body{position:relative; z-index:2; text-align:center;}
+  .hero-body .eyebrow{justify-content:center; color:var(--gold); opacity:0.9;}
+  .hero-headline{
+    font-size:clamp(38px, 6.2vw, 78px);
+    line-height:1.16;
+    margin-top:26px;
+    letter-spacing:0.005em;
+  }
+  .hero-headline em{
+    font-style:italic; color:var(--gold);
+  }
+  .hero-sub{
+    max-width:46ch; margin:26px auto 0; font-size:16.5px; opacity:0.72; font-weight:300;
+  }
+  .hero-jp{
+    margin-top:20px; font-size:14px; letter-spacing:0.06em; opacity:0.55; font-family:var(--font-mono);
+  }
+  .state-note{
+    margin-top:28px; display:inline-flex; flex-direction:column; gap:4px;
+    font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em; opacity:0.5;
+  }
+  .state-note b{color:var(--gold); opacity:1; font-weight:500;}
+
+  /* ---------- IMAGE PLACEHOLDER SLOT ---------- */
+  .img-slot{
+    position:relative; width:100%; overflow:hidden;
+    background:
+      repeating-linear-gradient(135deg, rgba(63,107,92,0.12) 0px, rgba(63,107,92,0.12) 2px, transparent 2px, transparent 14px),
+      linear-gradient(160deg, var(--forest) 0%, var(--forest-deep) 100%);
+    border:1px dashed var(--line-dark);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+  }
+  .img-slot .slot-label{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--text-light); opacity:0.55; padding:18px 24px; line-height:1.9;
+  }
+  .img-slot .slot-label b{display:block; opacity:0.85; font-size:11px; margin-bottom:4px; color:var(--gold);}
+  .img-slot.wide{aspect-ratio:16/8;}
+  .img-slot.square{aspect-ratio:4/3;}
+  .img-slot.tall{aspect-ratio:3/4; max-width:420px; margin:0 auto;}
+
+  /* ---------- REAL PHOTO FRAME ---------- */
+  .img-frame{width:100%; max-width:760px; margin-left:auto; margin-right:auto; overflow:hidden; border:1px solid var(--line-dark);}
+  .img-frame img{width:100%; height:100%; object-fit:cover; display:block;}
+  .img-frame.wide{aspect-ratio:16/9;}
+  .img-frame.tall{aspect-ratio:3/4; max-width:340px; margin:0 auto;}
+  .img-frame.portrait{aspect-ratio:4/5; max-width:520px;}
+  .img-frame.square{aspect-ratio:1/1; max-width:420px; margin:0 auto;}
+
+  /* mirror axis */
+  .mirror-axis{
+    position:relative; width:100%; margin-top:64px;
+  }
+  .mirror-line{
+    position:absolute; left:0; right:0; top:0; height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold-dim) 20%, var(--gold) 50%, var(--gold-dim) 80%, transparent);
+    opacity:0.55;
+  }
+  .mirror-reflection{
+    text-align:center;
+    transform:scaleY(-1);
+    color:var(--gold-dim);
+    opacity:0.32;
+    filter:blur(0.4px);
+    padding-top:14px;
+    font-size:clamp(38px, 6.2vw, 78px);
+    line-height:1.16;
+    font-family:var(--font-display);
+    animation:ripple 9s ease-in-out infinite;
+    transform-origin:top center;
+  }
+  @keyframes ripple{
+    0%,100%{ transform:scaleY(-1) skewX(0deg); }
+    50%{ transform:scaleY(-1) skewX(0.6deg); }
+  }
+  .hero-scroll{
+    text-align:center; margin:52px 0 40px; font-family:var(--font-mono);
+    font-size:10.5px; letter-spacing:0.2em; opacity:0.4; text-transform:uppercase;
+  }
+
+  /* ---------- INTRO / BONNO ---------- */
+  .intro-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:64px; align-items:start;
+  }
+  @media (max-width:860px){ .intro-grid{grid-template-columns:1fr; gap:40px;} }
+  .intro-copy p{font-size:16px; opacity:0.82; margin-bottom:18px; max-width:52ch;}
+  .intro-copy .cite{
+    font-family:var(--font-display); font-style:italic; font-size:19px;
+    color:var(--reflect-dim); margin:28px 0; line-height:1.6; max-width:44ch;
+  }
+
+  .switch-list{border-top:1px solid var(--line-light);}
+  .switch-row{
+    padding:18px 0; border-bottom:1px solid var(--line-light);
+    display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:baseline;
+  }
+  .switch-row .sw-jp{font-family:var(--font-jp); font-size:15px; color:var(--reflect-dim);}
+  .switch-row .sw-en{font-size:14.5px; opacity:0.78;}
+
+  /* ---------- TWO REFLECTIONS (fixed vs tuned) ---------- */
+  .reflect-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:1px;
+    background:var(--line-dark); border:1px solid var(--line-dark);
+    margin-top:8px;
+  }
+  @media (max-width:780px){ .reflect-grid{grid-template-columns:1fr;} }
+  .reflect-card{
+    background:var(--forest-deep); padding:52px 44px; position:relative; overflow:hidden;
+  }
+  .reflect-card.tuned{background:var(--ink);}
+  .reflect-card .rc-label{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    opacity:0.55; color:var(--text-light);
+  }
+  .reflect-card h3{
+    font-size:26px; color:var(--text-light); margin:16px 0 22px; font-weight:500;
+  }
+  .reflect-card .rc-jp{font-family:var(--font-jp); color:var(--gold); font-size:15px; margin-bottom:6px; display:block;}
+  .reflect-card .rc-flow{
+    font-size:14px; color:var(--text-light); opacity:0.68; line-height:2.1; margin-bottom:30px;
+  }
+  .reflect-wave{width:100%; height:46px;}
+  .reflect-wave path{fill:none; stroke-width:1.4;}
+  .reflect-card.fixed .reflect-wave path{stroke:#7A8A82; opacity:0.55;}
+  .reflect-card.tuned .reflect-wave path{stroke:var(--gold); opacity:0.85;}
+
+  .reflect-caption{
+    text-align:center; font-family:var(--font-display); font-style:italic;
+    font-size:19px; color:var(--text-light); opacity:0.75; max-width:38ch;
+    margin:44px auto 0; line-height:1.7;
+  }
+
+  /* ---------- FIVE ANCHORS ---------- */
+  .anchor-grid{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:1px;
+    background:var(--line-light); border:1px solid var(--line-light); margin-top:8px;
+  }
+  @media (max-width:900px){ .anchor-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .anchor-grid{grid-template-columns:1fr;} }
+  .anchor-card{background:var(--mist); padding:32px 24px;}
+  .anchor-card .a-num{font-family:var(--font-mono); font-size:11px; color:var(--reflect-dim); opacity:0.8;}
+  .anchor-card .a-jp{font-family:var(--font-jp); font-size:17px; margin:14px 0 8px; display:block;}
+  .anchor-card .a-en{font-size:13px; opacity:0.7; line-height:1.7;}
+
+  /* ---------- SIX LENSES ---------- */
+  .lens-grid{
+    display:grid; grid-template-columns:repeat(6,1fr); gap:1px;
+    background:var(--line-light); border:1px solid var(--line-light); margin-top:8px;
+  }
+  @media (max-width:900px){ .lens-grid{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:560px){ .lens-grid{grid-template-columns:repeat(2,1fr);} }
+  .lens-card{background:var(--mist); padding:30px 20px 34px; text-align:center;}
+  .lens-card .l-num{font-family:var(--font-mono); font-size:11px; color:var(--reflect-dim); opacity:0.8;}
+  .lens-icon{width:54px; height:54px; margin:16px auto 14px;}
+  .lens-icon svg{width:100%; height:100%; overflow:visible;}
+  .lens-icon svg circle,
+  .lens-icon svg ellipse,
+  .lens-icon svg path,
+  .lens-icon svg line{fill:none; stroke:var(--reflect); stroke-width:1.1;}
+  .lens-icon svg .l-dot{fill:var(--reflect); stroke:none;}
+  .lens-icon svg .l-fill{fill:var(--gold); stroke:none; opacity:0.9;}
+  .lens-card .l-jp{font-family:var(--font-jp); font-size:16px; margin:0 0 8px; display:block;}
+  .lens-card .l-en{font-size:12.5px; opacity:0.68; line-height:1.65;}
+
+  .orb-frame{display:flex; justify-content:center; margin-top:36px; padding:12px 0;}
+  .orb-frame img{
+    width:96px; height:96px; border-radius:50%; object-fit:cover;
+    animation:orb-float 7s ease-in-out infinite;
+    will-change:transform;
+  }
+  @keyframes orb-float{
+    0%{   transform:translateY(0) rotate(0deg);   box-shadow:0 20px 44px rgba(20,22,20,0.16); }
+    50%{  transform:translateY(-16px) rotate(2deg); box-shadow:0 36px 70px rgba(20,22,20,0.26); }
+    100%{ transform:translateY(0) rotate(0deg);   box-shadow:0 20px 44px rgba(20,22,20,0.16); }
+  }
+
+  /* ---------- KINTSUGI / WABI-SABI ---------- */
+  .kintsugi{background:var(--mist-dim);}
+  .kintsugi-grid{
+    display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:center;
+  }
+  @media (max-width:860px){ .kintsugi-grid{grid-template-columns:1fr; gap:44px;} }
+  .bowl-frame{
+    display:flex; align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .bowl-frame svg{width:100%; max-width:320px; height:auto;}
+  .kintsugi-copy .cite{
+    font-family:var(--font-display); font-style:italic; font-size:22px;
+    color:var(--reflect-dim); line-height:1.6; margin-bottom:26px; max-width:30ch;
+  }
+  .kintsugi-copy p{font-size:16px; opacity:0.82; margin-bottom:16px; max-width:52ch;}
+  .kintsugi-copy .jp-tag{
+    display:inline-flex; gap:10px; align-items:baseline; margin-top:8px;
+    font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; opacity:0.6;
+  }
+  .jp-tag .jp{font-size:16px; color:var(--gold-dim);}
+
+  /* ---------- 07 MIND, BREATH, POSTURE ---------- */
+  .mbp-list{border-top:1px solid var(--line-dark); margin-top:8px;}
+  .mbp-row{
+    padding:22px 0; border-bottom:1px solid var(--line-dark);
+    display:grid; grid-template-columns:32px 150px 1fr; gap:18px; align-items:baseline;
+  }
+  @media (max-width:640px){ .mbp-row{grid-template-columns:28px 1fr; row-gap:6px;} .mbp-row .mbp-en{grid-column:2 / 3;} }
+  .mbp-row .mbp-num{font-family:var(--font-mono); font-size:11px; color:var(--gold); opacity:0.8;}
+  .mbp-row .mbp-jp{font-family:var(--font-jp); font-size:15px; color:var(--gold);}
+  .mbp-row .mbp-en{font-size:14.5px; color:var(--text-light); opacity:0.78; line-height:1.8;}
+
+  /* ---------- MASCOT LINE-ART (closing) ---------- */
+  .mascot-linework{
+    display:block; width:100%; padding:3rem 1.5rem 4rem;
+    text-align:center; background:var(--mist);
+  }
+  .mascot-linework img{
+    display:block; width:100%; max-width:640px; height:auto; margin:0 auto;
+  }
+
+  /* ---------- QUIET CTA (placeholder) ---------- */
+  .cta{
+    background:var(--forest-deep); color:var(--text-light);
+    text-align:center; padding:150px 0 130px;
+    position:relative; overflow:hidden;
+  }
+  .cta-bg{position:absolute; inset:0; z-index:0;}
+  .cta-bg img{width:100%; height:100%; object-fit:cover; opacity:0.22;}
+  .cta-bg::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, var(--forest-deep) 0%, rgba(21,34,25,0.75) 40%, var(--forest-deep) 100%);
+  }
+  .cta .wrap{position:relative; z-index:1;}
+  .cta .eyebrow{justify-content:center; color:var(--gold);}
+  .cta h2{
+    font-size:clamp(28px,4vw,44px); margin:24px auto 20px; max-width:20ch; line-height:1.4;
+    color:var(--text-light);
+  }
+  .cta p{opacity:0.68; max-width:44ch; margin:0 auto 40px; font-size:15.5px;}
+  .cta-form{
+    display:flex; justify-content:center; gap:0; max-width:420px; margin:0 auto;
+    border:1px solid var(--line-dark);
+  }
+  .cta-form input{
+    flex:1; background:transparent; border:none; padding:16px 20px;
+    font-family:var(--font-body); font-size:14px; color:var(--text-light);
+  }
+  .cta-form input::placeholder{color:rgba(242,238,227,0.4);}
+  .cta-form button{
+    background:var(--gold); color:var(--forest-deep); border:none;
+    padding:16px 26px; font-family:var(--font-mono); font-size:12.5px; letter-spacing:0.05em;
+    cursor:pointer; transition:background .2s ease;
+  }
+  .cta-form button:hover{background:#D9B87C;}
+  .cta-link-btn{
+    display:inline-flex; align-items:center; gap:12px;
+    background:var(--gold); color:var(--forest-deep);
+    font-family:var(--font-mono); font-size:13.5px; letter-spacing:0.05em;
+    padding:19px 38px; text-decoration:none; transition:background .2s ease, transform .2s ease;
+  }
+  .cta-link-btn:hover{background:#D9B87C; transform:translateY(-2px);}
+  .cta-note{
+    margin-top:22px; font-family:var(--font-mono); font-size:10.5px; opacity:0.4;
+    letter-spacing:0.05em; text-transform:uppercase;
+  }
+
+  footer{
+    background:var(--ink); color:var(--text-light);
+    padding:36px 0; font-family:var(--font-mono); font-size:11px; opacity:0.45;
+    letter-spacing:0.05em; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  }
+
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- JA BLOCK (grouped Japanese translation, separate from EN block) ---------- */
+  .ja-block{
+    margin-top:40px; padding-top:32px; border-top:1px solid var(--line-light);
+    font-family:var(--font-jp); color:var(--gold-dim);
+  }
+  .ja-block-label{
+    font-family:var(--font-mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase;
+    opacity:0.55; margin-bottom:14px; display:block; color:var(--gold-dim);
+  }
+  .ja-block p{font-size:12.5px; line-height:1.95; opacity:0.85; margin-bottom:11px; max-width:54ch;}
+  .ja-block p.ja-heading{font-size:14.5px; font-weight:600; opacity:0.95; margin-bottom:14px; line-height:1.8;}
+  .ja-block p.ja-cite{opacity:0.8; padding-left:14px; border-left:2px solid var(--gold-dim);}
+  .ja-block ul.ja-list{list-style:none; margin-top:4px;}
+  .ja-block ul.ja-list li{font-size:11.5px; line-height:1.95; opacity:0.82; margin-bottom:3px;}
+  .on-dark .ja-block{border-top-color:var(--line-dark); color:var(--gold);}
+  .on-dark .ja-block-label{color:var(--gold);}
+  .on-dark .ja-block p.ja-cite{border-left-color:var(--gold);}
+  .kintsugi .ja-block{border-top-color:var(--line-light);}
+  .ja-block.centered{text-align:center; margin-left:auto; margin-right:auto;}
+  .ja-block.centered p{margin-left:auto; margin-right:auto;}
+
+  /* ja-block variant for use on dark sections next to a light image, for visual balance */
+  .ja-block.light-panel{
+    background:var(--mist); border-top:none; border-radius:4px;
+    padding:32px 28px; margin-top:40px; color:var(--text-dark);
+  }
+  .ja-block.light-panel .ja-block-label{color:var(--reflect-dim); opacity:0.75;}
+  .ja-block.light-panel p{color:var(--text-dark); opacity:0.82;}
+  .ja-block.light-panel p.ja-heading{color:var(--text-dark); opacity:0.95;}
+  .ja-block.light-panel p.ja-cite{border-left-color:var(--reflect-dim);}
+  .ja-block.light-panel ul.ja-list li{color:var(--text-dark); opacity:0.8;}
+
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span style="mix-blend-mode:normal; background:rgba(253,253,251,0.55); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); padding:5px 12px; border-radius:4px; display:inline-flex; pointer-events:auto; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+    <img width="779" height="189" src="images/logo.png" alt="美脳調律プログラム" style="height:22px; width:auto; display:block;">
+  </span>
+</nav>
+
+<!-- ===================== HERO — MIRROR SIGNATURE ===================== -->
+<header class="hero">
+  <div class="hero-photo"><img width="1254" height="848" src="images/hero-mirror-room.jpg" alt=""></div>
+  <svg class="hero-canopy" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <radialGradient id="canopyGlow" cx="30%" cy="10%" r="70%">
+        <stop offset="0%" stop-color="#C7A467" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="#C7A467" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="1200" height="800" fill="url(#canopyGlow)"/>
+    <g stroke="#3F6B5C" stroke-width="1" opacity="0.25" fill="none">
+      <path d="M0,60 C150,100 250,20 400,70 C550,120 650,40 800,90 C950,140 1050,60 1200,100"/>
+      <path d="M0,140 C180,180 300,110 460,150 C620,190 720,120 880,160 C1000,190 1100,140 1200,170"/>
+    </g>
+  </svg>
+
+  <div class="hero-body wrap">
+    <span class="eyebrow">A japanese wellness model</span>
+    <h1 class="hero-headline">See what's <em>actually</em> there.</h1>
+    <p class="hero-sub">Bi-nō (美脳) is an old idea, quietly modernized: a mind clear enough to reflect the world instead of arguing with it.</p>
+    <div class="hero-jp">美 <span style="opacity:0.5;">— beautiful</span> ／ 脳 <span style="opacity:0.5;">— mind</span></div>
+    <div class="state-note">
+      <span><b>Bi-nō</b> 美脳 — the state itself.</span>
+      <span><b>Bi-nō Tuning</b> 美脳調律 — the practice that leads you there.</span>
+    </div>
+
+    <div class="ja-block centered" style="max-width:46ch; margin-left:auto; margin-right:auto;">
+      <span class="ja-block-label">日本語</span>
+      <p class="ja-heading">実際に、そこにあるものを見る。</p>
+      <p>美脳とは、静かに現代化された古い知恵——世界と言い争うのではなく、そのまま映し出せるほど澄んだ心のこと。</p>
+    </div>
+  </div>
+
+  <div class="mirror-axis wrap">
+    <div class="mirror-line"></div>
+    <div class="mirror-reflection" aria-hidden="true">See what's actually there.</div>
+  </div>
+
+  <div class="hero-scroll">scroll — 108 small distortions, one still mind</div>
+</header>
+
+<!-- ===================== 01 THE NOISE (煩悩) ===================== -->
+<section class="on-light pad">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">01 — the noise</span>
+      <h2>Buddhism has a word for<br>a busy mind: <span class="jp">煩悩</span>, bonnō.</h2>
+    </div>
+
+    <div class="img-frame wide reveal" style="margin-bottom:56px;">
+      <img width="1254" height="848" src="images/hero-mirror-room.jpg" alt="A room where the garden is mirrored in a still black table">
+    </div>
+
+    <div class="intro-grid">
+      <div class="intro-copy reveal">
+        <p>Bonnō is usually translated as "worldly desire" or "affliction," but it's simpler than that: it's the small, constant gap between what's happening and what you assume is happening.</p>
+        <p>An ambiguous message. A quiet room. A pause in a conversation. The moment is neutral — but a busy mind can't leave it neutral for long. It reaches for the nearest old memory and calls that the truth.</p>
+        <p class="cite">"You stop reacting to the person in front of you, and start reacting to the version of them stored in your memory."</p>
+        <p>None of the seven drivers below are flaws. They're just how a mind stays alive. The problem starts when they never stop firing.</p>
+      </div>
+
+      <div class="switch-list reveal">
+        <div class="switch-row"><span class="sw-jp">信念</span><span class="sw-en">Prior belief — what you already expect to find</span></div>
+        <div class="switch-row"><span class="sw-jp">感情</span><span class="sw-en">Emotion — the mood you're already standing in</span></div>
+        <div class="switch-row"><span class="sw-jp">利害</span><span class="sw-en">Incentive — what you'd gain from one reading over another</span></div>
+        <div class="switch-row"><span class="sw-jp">主体性</span><span class="sw-en">Agency — whether you feel in control of the moment</span></div>
+        <div class="switch-row"><span class="sw-jp">好奇心</span><span class="sw-en">Curiosity — how much you want to keep looking</span></div>
+        <div class="switch-row"><span class="sw-jp">心の状態</span><span class="sw-en">State of mind — tired, rushed, calm</span></div>
+        <div class="switch-row"><span class="sw-jp">他人の目</span><span class="sw-en">Being watched — who you imagine is noticing</span></div>
+      </div>
+    </div>
+
+    <div class="ja-block reveal">
+      <span class="ja-block-label">日本語</span>
+      <p class="ja-heading">仏教には、忙しい心を表す言葉がある。煩悩、ボンノウ。</p>
+      <p>煩悩は「世俗の欲望」や「わずらい」と訳されることが多いですが、実はもっとシンプルです。今起きていることと、自分がそう思い込んでいることとの、小さくて絶え間ないズレのこと。</p>
+      <p>意味の取りづらいメッセージ。静まり返った部屋。会話の間（ま）。その瞬間自体はニュートラルです——けれど忙しい心は、それを長くニュートラルなままにしておけません。すぐそばにある古い記憶に手を伸ばし、それを真実だと呼んでしまうのです。</p>
+      <p class="ja-cite">目の前の相手ではなく、自分の記憶の中に保存された「その人のバージョン」に反応し始める。</p>
+      <p>以下の7つのドライバーは、どれも欠点ではありません。心が生きている証にすぎない。問題が始まるのは、それが止まらなくなったときです。</p>
+      <ul class="ja-list">
+        <li>信念 — すでに見つけると決めているもの</li>
+        <li>感情 — すでに立っている気分</li>
+        <li>利害 — どちらの解釈を選ぶと得か</li>
+        <li>主体性 — その瞬間を自分でコントロールできている感覚があるか</li>
+        <li>好奇心 — どれだけ見続けたいと思うか</li>
+        <li>心の状態 — 疲れている、急いでいる、穏やかである</li>
+        <li>他人の目 — 誰に見られていると想像しているか</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 02 TWO REFLECTIONS ===================== -->
+<section class="on-dark pad">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">02 — two reflections</span>
+      <h2 style="color:var(--text-light);">The garden doesn't move.<br>Only the water decides<br>what gets seen.</h2>
+      <p style="color:var(--text-light); opacity:0.68;">Still water mirrors a garden with almost no loss. Disturbed water shows you a rough, moving guess of the same garden. Bonnō is what disturbs the water. Bi-nō is what settles it back down.</p>
+    </div>
+
+    <div class="img-frame portrait reveal" style="margin-bottom:56px;">
+      <img loading="lazy" decoding="async" width="976" height="1096" src="images/torii-koi.jpg" alt="A torii gate reflected in a clear koi pond, koi fish floating near the surface">
+    </div>
+
+    <div class="reflect-grid reveal">
+      <div class="reflect-card fixed">
+        <span class="rc-label">state one</span>
+        <span class="rc-jp">煩悩の多い状態</span>
+        <h3>A rippled mind</h3>
+        <div class="rc-flow">Ambiguous moment<br>↓ old memory answers first<br>↓ same reaction, again</div>
+        <svg class="reflect-wave" viewBox="0 0 300 46" preserveAspectRatio="none">
+          <path d="M0,23 C20,5 40,41 60,23 C80,5 100,41 120,23 C140,5 160,41 180,23 C200,5 220,41 240,23 C260,5 280,41 300,23"/>
+        </svg>
+      </div>
+      <div class="reflect-card tuned">
+        <span class="rc-label">state two</span>
+        <span class="rc-jp">美脳、調律された状態</span>
+        <h3>A still mind</h3>
+        <div class="rc-flow">Ambiguous moment<br>↓ a half-second pause<br>↓ a chosen response</div>
+        <svg class="reflect-wave" viewBox="0 0 300 46" preserveAspectRatio="none">
+          <path d="M0,23 L300,23"/>
+        </svg>
+      </div>
+    </div>
+
+    <p class="reflect-caption reveal">Bi-nō isn't the absence of bonnō. It's how often you notice the ripple — and wait for it to settle before you decide what you saw.</p>
+
+    <p class="reflect-caption reveal" style="margin-top:18px; opacity:0.72;">美 is 羊 (abundance) over 大 (large) — the essence that draws abundance in. If bonnō is what disturbs the water, 美 is the essence Bi-nō settles back into view.</p>
+
+    <div class="ja-block reveal">
+      <span class="ja-block-label">日本語</span>
+      <p class="ja-heading">庭は動かない。何が見えるかを決めるのは、水だけ。</p>
+      <p>静かな水は、庭をほとんど損なうことなく映し出します。乱れた水は、同じ庭の、粗く揺れ動く推測を見せるだけ。煩悩とは水を乱すもの。美脳とは、それを再び静めるものです。</p>
+      <p style="margin-top:24px;"><b style="opacity:0.85;">波立つ心：</b>あいまいな瞬間 → 古い記憶が先に答える → また同じ反応</p>
+      <p><b style="opacity:0.85;">静かな心：</b>あいまいな瞬間 → 一瞬の間（ま） → 選び取った反応</p>
+      <p style="margin-top:24px;">美脳とは、煩悩がない状態のことではありません。波紋にどれだけ気づけるか——そして、それが静まるのを待ってから、自分が見たものを決められるかということです。</p>
+      <p style="margin-top:24px;">「美」という字は、羊（ひつじ）＋大（おおきい）——豊かさを引き寄せるエッセンスそのものを表す字です。煩悩が水を乱すものなら、美とは、その水が静まった先に立ち上がる、豊かさの本質のことです。</p>
+    </div>
+
+    <div class="img-frame wide reveal" style="margin-top:56px;">
+      <img loading="lazy" decoding="async" width="298" height="156" src="images/karesansui-zero-position.jpg" alt="Raked gravel in a Japanese zen garden, concentric ripple patterns around still stones">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 03 KINTSUGI / WABI-SABI ===================== -->
+<section class="on-light pad kintsugi">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">03 — kintsugi</span>
+      <h2>A crack, repaired in gold,<br>isn't hidden. It's history<br>you can still drink from.</h2>
+    </div>
+
+    <div class="kintsugi-grid">
+      <div class="bowl-frame reveal">
+        <img loading="lazy" decoding="async" width="1073" height="976" src="images/kintsugi-bowl.jpg" alt="A ceramic bowl repaired with gold kintsugi seams" style="width:100%; max-width:340px; border-radius:2px; box-shadow:0 24px 60px rgba(0,0,0,0.35);">
+      </div>
+
+      <div class="kintsugi-copy reveal">
+        <p class="cite">"Kintsugi doesn't hide the break. It draws a gold line through it."</p>
+        <p>Wabi-sabi is the older idea underneath bi-nō: beauty isn't found despite wear, asymmetry, and repair — it's found because of them. A bowl mended with gold lacquer isn't worth less than an unbroken one. Its crack is now part of what makes it worth keeping.</p>
+        <p>Bi-nō borrows the same posture toward a disturbed mind. The goal was never water that's never touched. It's noticing the crack, mending it in plain sight, and using the bowl again — a little more honestly than before.</p>
+        <div class="jp-tag"><span class="jp">侘寂</span><span>wabi-sabi</span></div>
+        <div class="jp-tag"><span class="jp">金継ぎ</span><span>kintsugi — golden repair</span></div>
+
+        <div class="ja-block reveal">
+          <span class="ja-block-label">日本語</span>
+          <p class="ja-cite">金継ぎは、割れを隠しません。そこに金の線を引くのです。</p>
+          <p>侘寂（わびさび）は、美脳の土台にあるさらに古い考え方です。美しさは、摩耗や非対称、修復があるにもかかわらず存在するのではなく、それらがあるからこそ存在する。金の漆で継がれた器は、割れていない器より価値が低いわけではありません。そのひびこそが、今、その器を持ち続ける理由の一部になっています。</p>
+          <p>美脳は、乱れた心に対しても同じ姿勢を借りています。目指すのは、一度も揺らがない水ではありません。ひびに気づき、それを隠さずに継ぎ、その器をまた使うこと——以前より少しだけ正直に。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 04 SHAKKEI / BORROWED SCENERY ===================== -->
+<section class="on-dark pad">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">04 — shakkei</span>
+      <h2 style="color:var(--text-light);">The mountain was<br>never yours. The garden<br>just knew how to frame it.</h2>
+      <p style="color:var(--text-light); opacity:0.68;">Japanese gardens have a design principle called <span class="jp" style="font-style:normal;">借景</span>, shakkei — "borrowed scenery." A distant mountain, a shrine gate, a neighbor's tree line: none of it belongs to the garden. It's simply framed so well that it reads as part of the whole.</p>
+      <p style="color:var(--text-light); opacity:0.68; margin-top:22px;">But borrowing scenery isn't automatic — it takes a discipline. Only when you understand what lies behind the view, and bring your own posture into line with what it calls for, does harmony actually appear. It's the difference between assuming you're simply seeing what's there — <span class="jp" style="font-style:normal;">素朴実在論</span>, naive realism — and practicing a way of being, <span class="jp" style="font-style:normal;">在り方</span>, that lets you see it at all.</p>
+    </div>
+
+    <div class="img-frame tall reveal" style="margin-bottom:44px;">
+      <img loading="lazy" decoding="async" width="928" height="1133" src="images/kawadoko-borrowed.jpg" alt="A lantern-lit riverside dining platform framed by maple trees">
+    </div>
+
+    <p class="reflect-caption reveal" style="color:var(--text-light);">Bi-nō works the same way. It doesn't manufacture calm from nothing — it borrows what was already there: a pause that existed before you noticed it, a clarity the room already had. The practice is just learning where to stand so it comes into frame.</p>
+
+    <div class="ja-block reveal">
+      <span class="ja-block-label">日本語</span>
+      <p class="ja-heading">その山は、もともとあなたのものではなかった。庭はただ、それをどう額装するかを知っていただけ。</p>
+      <p>日本庭園には「借景（しゃっけい）」と呼ばれる設計の原則があります——直訳すれば「借りた景色」。遠くの山、神社の鳥居、隣家の木立。そのどれも、庭そのものの所有物ではありません。ただ、あまりにも巧みに額装されているため、全体の一部のように見えるのです。</p>
+      <p class="ja-heading" style="margin-top:22px;">景色を借りるには、流儀がいる。</p>
+      <p>そこにある景色を、ただそのまま拝借するのではありません。その背景への理解と、そこにふさわしいあり方へ自分の基準を合わせられること——そこで初めて「調和」が生まれます。</p>
+      <p>これは、「素朴実在論」と「在り方」の違いでもあります。</p>
+      <p style="margin-top:22px;">美脳も同じように働きます。何もないところから静けさを作り出すのではなく、すでにそこにあったものを借りるのです——気づく前から存在していた間（ま）、その部屋がすでに持っていた透明さ。実践とは、ただそれが額の中に収まる場所に立つことを学ぶことです。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 05 FIVE ANCHORS ===================== -->
+<section class="on-light pad">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">05 — five anchors</span>
+      <h2>Five ways to find<br>your footing again.</h2>
+      <p>When the water's already disturbed, these are the places to stand while it settles.</p>
+    </div>
+
+    <div class="anchor-grid reveal">
+      <div class="anchor-card">
+        <span class="a-num">01</span>
+        <span class="a-jp jp">身体知</span>
+        <p class="a-en">Somatic — reading the body before the story arrives</p>
+      </div>
+      <div class="anchor-card">
+        <span class="a-num">02</span>
+        <span class="a-jp jp">感情</span>
+        <p class="a-en">Emotional focus — naming what you feel, precisely</p>
+      </div>
+      <div class="anchor-card">
+        <span class="a-num">03</span>
+        <span class="a-jp jp">効力感</span>
+        <p class="a-en">Efficacy — trusting your ability to act on it</p>
+      </div>
+      <div class="anchor-card">
+        <span class="a-num">04</span>
+        <span class="a-jp jp">盲点</span>
+        <p class="a-en">Scotoma — the blind spot you didn't know was there</p>
+      </div>
+      <div class="anchor-card">
+        <span class="a-num">05</span>
+        <span class="a-jp jp">循環</span>
+        <p class="a-en">Chaos theory — change rarely arrives in a straight line</p>
+      </div>
+    </div>
+
+    <p class="anchor-lead-note reveal" style="max-width:52ch; margin:28px auto 0; text-align:center; font-style:italic; color:var(--text-dark); opacity:0.72;">The more a mind runs on concept — story, logic, being right — the further it drifts from the body. Bi-nō starts here, because the body is the one place still reachable before the story takes over.</p>
+
+    <div class="img-frame portrait reveal" style="margin-top:56px;">
+      <img loading="lazy" decoding="async" width="1077" height="1460" src="images/flower-window.jpg" alt="Flowering vines hanging through a wooden skylight">
+    </div>
+
+    <div class="ja-block reveal">
+      <span class="ja-block-label">日本語</span>
+      <p class="ja-heading">もう一度、足場を見つけるための5つの方法。</p>
+      <p>水がすでに乱れているとき、それが静まるまでの間、立っていられる場所です。</p>
+      <ul class="ja-list">
+        <li>身体知 — 物語が生まれる前に、身体を読む</li>
+        <li>感情 — 感じていることに、正確な名前をつける</li>
+        <li>効力感 — それに対して行動できる自分を信じる</li>
+        <li>盲点 — そこにあると気づいていなかった死角</li>
+        <li>循環 — 変化はまっすぐにはやってこない</li>
+      </ul>
+      <p style="margin-top:16px;">物語（概念）が先に立つ人ほど、身体は置き去りになる。美脳が最初に身体から入るのは、そこが唯一、物語より先に「今」に触れられる場所だから。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 06 SIX LENSES ===================== -->
+<section class="on-light pad">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">06 — six lenses</span>
+      <h2>Six lenses that shape<br>what you call reality.</h2>
+      <p>Before a moment ever reaches judgment, it's already passed through these six filters.</p>
+    </div>
+
+    <div class="lens-grid reveal">
+      <div class="lens-card">
+        <span class="l-num">01</span>
+        <div class="lens-icon">
+          <svg viewBox="0 0 60 60">
+            <ellipse cx="30" cy="30" rx="23" ry="10" transform="rotate(-18 30 30)"/>
+            <circle cx="30" cy="30" r="14"/>
+            <circle class="l-dot" cx="21" cy="24" r="3"/>
+          </svg>
+        </div>
+        <span class="l-jp jp">視座</span>
+        <p class="l-en">どこから<br>物事を見るか</p>
+      </div>
+      <div class="lens-card">
+        <span class="l-num">02</span>
+        <div class="lens-icon">
+          <svg viewBox="0 0 60 60">
+            <line x1="30" y1="10" x2="49.02" y2="23.82"/>
+            <line x1="30" y1="10" x2="41.76" y2="46.18"/>
+            <line x1="30" y1="10" x2="18.24" y2="46.18"/>
+            <line x1="30" y1="10" x2="10.98" y2="23.82"/>
+            <line x1="49.02" y1="23.82" x2="41.76" y2="46.18"/>
+            <line x1="49.02" y1="23.82" x2="18.24" y2="46.18"/>
+            <line x1="49.02" y1="23.82" x2="10.98" y2="23.82"/>
+            <line x1="41.76" y1="46.18" x2="18.24" y2="46.18"/>
+            <line x1="41.76" y1="46.18" x2="10.98" y2="23.82"/>
+            <line x1="18.24" y1="46.18" x2="10.98" y2="23.82"/>
+            <circle class="l-dot" cx="30" cy="10" r="2.4"/>
+            <circle class="l-dot" cx="49.02" cy="23.82" r="2.4"/>
+            <circle class="l-dot" cx="41.76" cy="46.18" r="2.4"/>
+            <circle class="l-dot" cx="18.24" cy="46.18" r="2.4"/>
+            <circle class="l-dot" cx="10.98" cy="23.82" r="2.4"/>
+          </svg>
+        </div>
+        <span class="l-jp jp">縁起</span>
+        <p class="l-en">何と何をつなげて<br>認識するか</p>
+      </div>
+      <div class="lens-card">
+        <span class="l-num">03</span>
+        <div class="lens-icon">
+          <svg viewBox="0 0 60 60">
+            <circle cx="30" cy="30" r="20"/>
+            <circle cx="30" cy="23" r="8"/>
+            <circle cx="36" cy="27" r="8"/>
+            <circle cx="36" cy="34" r="8"/>
+            <circle cx="30" cy="38" r="8"/>
+            <circle cx="24" cy="34" r="8"/>
+            <circle cx="24" cy="27" r="8"/>
+          </svg>
+        </div>
+        <span class="l-jp jp">像</span>
+        <p class="l-en">どんな世界を<br>前提としているか</p>
+      </div>
+      <div class="lens-card">
+        <span class="l-num">04</span>
+        <div class="lens-icon">
+          <svg viewBox="0 0 60 60">
+            <circle cx="30" cy="30" r="20"/>
+            <circle cx="30" cy="30" r="12"/>
+            <circle class="l-dot" cx="30" cy="30" r="3.2"/>
+          </svg>
+        </div>
+        <span class="l-jp jp">距離</span>
+        <p class="l-en">人との<br>境界線</p>
+      </div>
+      <div class="lens-card">
+        <span class="l-num">05</span>
+        <div class="lens-icon">
+          <svg viewBox="0 0 60 60">
+            <circle cx="30" cy="30" r="20"/>
+            <path class="l-fill" d="M30,10 A10,10 0 0,1 30,30 A10,10 0 0,0 30,50 A20,20 0 0,1 30,10 Z"/>
+            <circle class="l-dot" cx="30" cy="20" r="3"/>
+            <circle cx="30" cy="40" r="3" fill="var(--mist)" stroke="var(--reflect)"/>
+          </svg>
+        </div>
+        <span class="l-jp jp">陰陽</span>
+        <p class="l-en">エネルギーの<br>使い方</p>
+      </div>
+      <div class="lens-card">
+        <span class="l-num">06</span>
+        <div class="lens-icon">
+          <svg viewBox="0 0 60 60">
+            <circle cx="30" cy="30" r="20"/>
+            <circle class="l-dot" cx="30" cy="10" r="3"/>
+            <circle class="l-dot" cx="47.32" cy="40" r="3"/>
+            <circle class="l-dot" cx="12.68" cy="40" r="3"/>
+          </svg>
+        </div>
+        <span class="l-jp jp">循環</span>
+        <p class="l-en">エネルギーの<br>流れ</p>
+      </div>
+    </div>
+
+    <div class="ja-block reveal">
+      <span class="ja-block-label">日本語</span>
+      <p class="ja-heading">あなたが「現実」と呼ぶものを形づくる、6つのレンズ。</p>
+      <p>ある瞬間が判断に至るまでに、それはすでにこの6つのフィルターを通過しています。</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== 07 MIND, BREATH, POSTURE (調身・調息・調心) ===================== -->
+<section class="on-dark pad">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">07 — 視座のフレームワーク</span>
+      <h2 style="color:var(--text-light);">Posture, then breath,<br>then mind — a framework<br>of its own.</h2>
+      <p style="color:var(--text-light); opacity:0.68;"><span class="jp" style="font-style:normal;">視座</span> has a mechanism behind it: <span class="jp" style="font-style:normal;">調身・調息・調心</span> — posture, then breath, then mind. This is its own framework, separate from the six lenses — not one more lens to add to that list, but the practice that lets any lens settle into place at all.</p>
+      <p style="color:var(--text-light); opacity:0.68; margin-top:22px;">You don't calm the mind directly. You arrange the body, let the breath follow, and the mind settles last, almost on its own. Where it settles has a name: <span class="jp" style="font-style:normal;">ゼロポジション</span>, zero position — the ground <span class="jp" style="font-style:normal;">視座</span> returns you to before the next view even forms.</p>
+    </div>
+
+    <div class="state-note reveal" style="margin-bottom:44px;">
+      <span><b>視座のフレームワーク</b> — <span class="jp" style="font-style:normal;">調身・調息・調心</span>, a framework of its own.</span>
+      <span><b>ゼロポジション</b> 零位置 — where <span class="jp" style="font-style:normal;">調身・調息・調心</span> settles you, and 視座 begins again.</span>
+    </div>
+
+    <p style="color:var(--text-light); opacity:0.78; max-width:56ch; margin-bottom:8px;" class="reveal">Two of the five anchors from before — <span class="jp" style="font-style:normal;">身体知</span> and <span class="jp" style="font-style:normal;">感情</span> — turn out to have a tradition and a body of research behind them.</p>
+
+    <div class="mbp-list reveal">
+      <div class="mbp-row">
+        <span class="mbp-num">01</span>
+        <span class="mbp-jp jp">身体知</span>
+        <span class="mbp-en">Somatic focus — mindfulness research shows the body is easier to enter than the mind directly</span>
+      </div>
+      <div class="mbp-row">
+        <span class="mbp-num">02</span>
+        <span class="mbp-jp jp">感情</span>
+        <span class="mbp-en">Emotional focus — rumination research, Zen's <span class="jp" style="font-style:normal;">魔境</span> (the seductive visions that can hijack a meditator), and Jung's psychic inflation all warn what happens when this step is skipped</span>
+      </div>
+      <div class="mbp-row">
+        <span class="mbp-num">03</span>
+        <span class="mbp-jp jp">俯瞰</span>
+        <span class="mbp-en">Third-person view — sports psychology's first/third-person imagery research, the seat in the audience</span>
+      </div>
+      <div class="mbp-row">
+        <span class="mbp-num">04</span>
+        <span class="mbp-jp jp">常の身・常の心</span>
+        <span class="mbp-en">Miyamoto Musashi's <span class="jp" style="font-style:normal;">五輪書</span> — the everyday posture and the posture for battle are the same one</span>
+      </div>
+    </div>
+
+    <div class="ja-block light-panel reveal">
+      <span class="ja-block-label">日本語</span>
+      <p class="ja-heading">視座には仕組みがある。調身・調息・調心。</p>
+      <p>視座には、それを支える仕組みがあります。調身・調息・調心——まず姿勢を整え、次に呼吸に任せ、最後に心が整う。これは6つのレンズとは別の、独立したフレームワークです。心を直接鎮めるのではなく、身体を整えることから始まり、心は最後にほとんど自然に静まっていきます。</p>
+      <p style="margin-top:22px;">その静まった場所には名前がある。ゼロポジション——次の視座がまだ形になる前に、視座が立ち返る場所。</p>
+      <p style="margin-top:22px;">先に出てきた5つの足場のうち、身体知と感情の2つには、実は伝統と研究の裏付けがある。</p>
+      <ul class="ja-list">
+        <li>身体知 — マインドフルネス研究では、身体は心より先に取り組みやすいとされる</li>
+        <li>感情 — 反芻研究、禅の「魔境」(修行者を惑わす幻視)、ユングの「心的インフレーション」は、この段階を飛ばしたときに起きることへの警告</li>
+        <li>俯瞰 — スポーツ心理学の一人称/三人称イメージ研究、客席から見る視点</li>
+        <li>常の身・常の心 — 宮本武蔵『五輪書』。日常の姿勢と、本番の姿勢は、同じひとつのもの</li>
+      </ul>
+    </div>
+
+    <div class="mascot-linework reveal" style="padding:3rem 1.5rem; background:var(--mist); border-radius:4px;">
+      <img loading="lazy" decoding="async" width="691" height="361" src="images/mascot-meditation-linework.jpg" alt="A line-art figure meditating, surrounded by concentric ripple circles">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA (placeholder) ===================== -->
+<section class="cta">
+  <div class="cta-bg"><img loading="lazy" decoding="async" width="1027" height="1531" src="images/veranda-reflection.jpg" alt=""></div>
+  <div class="wrap">
+    <span class="eyebrow">where this comes from</span>
+    <h2>The philosophy<br>behind the reflection.</h2>
+    <p>Bi-nō grows out of a Japanese framework called <span class="jp" style="font-style:normal;">縁起とフラクタル</span> — "origin and fractal" — on why the same relationship patterns keep repeating until someone names them. The full story is on note.</p>
+
+    <div class="ja-block centered" style="max-width:44ch; margin-left:auto; margin-right:auto; margin-bottom:40px;">
+      <span class="ja-block-label">日本語</span>
+      <p class="ja-heading">この映し出しの背後にある哲学。</p>
+      <p>美脳は、日本発のフレームワーク「縁起とフラクタル」から生まれています——同じ関係のパターンが、誰かがそれに名前をつけるまで繰り返され続ける理由についての枠組みです。全体の話はnoteで。</p>
+    </div>
+
+    <a class="cta-link-btn" href="https://note.com/engishiza" target="_blank" rel="noopener">Read on note →</a>
+    <div class="cta-note">縁起とフラクタル — note.com/engishiza</div>
+    <div class="orb-frame reveal">
+      <img loading="lazy" decoding="async" width="319" height="313" src="images/gradient-orb.jpg" alt="A circular gradient in warm red-orange and cool blue tones">
+    </div>
+  </div>
+</section>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
